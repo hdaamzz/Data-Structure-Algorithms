@@ -64,7 +64,6 @@ class CircularQueue{
             str+=this.items[i]
             console.log(str);
         }
-
     }
 }
 const queue=new CircularQueue(5);

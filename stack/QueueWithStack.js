@@ -63,11 +63,14 @@ class QueueWithStack{
 const queue=new QueueWithStack();
 queue.enqueue(30);
 queue.enqueue(40);
-queue.enqueue(50);
-queue.enqueue(60);
+
 
 
 console.log(queue.dequeue());
+queue.enqueue(50);
+queue.enqueue(60);
+console.log(queue.dequeue());
+
 console.log(queue.peek());
 
 

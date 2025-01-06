@@ -19,6 +19,9 @@ const array=[3,7,4,8,23,8,34,7,4,7,3];
 
 console.log(quickSort(array))
 
+
+//if pivot is random
+
 function quickSort2(arr){
     if(arr.length <2){
         return arr
