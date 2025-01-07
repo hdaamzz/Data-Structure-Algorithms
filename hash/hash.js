@@ -58,11 +58,25 @@ class HashTable{
             
         }
     }
+
+    loadFactor(){
+        let entries=0;
+        for(let bucket of this.table){
+            if(bucket){
+                entries+=bucket.length
+            }
+        }
+        return entries/this.size
+    }
 }
+
 
 const table=new HashTable(5);
 table.set("name","shafi")
 
+
+
 table.set("nema",54)
 table.set("2",34)
 table.display()
+console.log(table.loadFactor());
