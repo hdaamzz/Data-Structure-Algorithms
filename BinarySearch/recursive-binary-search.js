@@ -19,4 +19,4 @@ function search(arr,target,left,right){
     }
 }
 
-console.log(recursiveBinary(arr,1))
+console.log(recursiveBinary(arr,3))

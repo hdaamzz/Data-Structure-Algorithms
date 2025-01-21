@@ -1,72 +1,74 @@
-class Graph{
-    constructor(){
-        this.adjList={}
+class Graph {
+    constructor() {
+        this.adjList = {}
     }
 
-    addVertex(vertex){
-        if(!this.adjList[vertex]){
-            this.adjList[vertex]=new Set()
+    addVertex(vertex) {
+        if (!this.adjList[vertex]) {
+            this.adjList[vertex] = new Set()
         }
     }
-    addEdge(vertex1,vertex2){
-        if(!this.adjList[vertex1])this.addVertex(vertex1)
-        if(!this.adjList[vertex2])this.addVertex(vertex2)
-           
-        this.adjList[vertex1].add(vertex2)&&
-        this.adjList[vertex2].add(vertex1)
-            
+    addEdge(vertex1, vertex2) {
+        if (!this.adjList[vertex1]) this.addVertex(vertex1)
+        if (!this.adjList[vertex2]) this.addVertex(vertex2)
+
+        this.adjList[vertex1].add(vertex2) &&
+            this.adjList[vertex2].add(vertex1)
+
     }
-    hasEdge(vertex1,vertex2){
-        return(
-            this.adjList[vertex1].has(vertex2)&&
+    hasEdge(vertex1, vertex2) {
+        return (
+            this.adjList[vertex1].has(vertex2) &&
             this.adjList[vertex2].has(vertex1)
         )
     }
-    deleteEdge(vertex1,vertex2){
-        return(
-            this.adjList[vertex1].delete(vertex2)&&
+    deleteEdge(vertex1, vertex2) {
+        return (
+            this.adjList[vertex1].delete(vertex2) &&
             this.adjList[vertex2].delete(vertex1)
 
         )
     }
-    deleteVertex(vertex){
-        if(this.adjList[vertex]){
-            for(let adjVertex of this.adjList[vertex]){
-                this.deleteEdge(vertex,adjVertex)
+    deleteVertex(vertex) {
+        if (this.adjList[vertex]) {
+            for (let adjVertex of this.adjList[vertex]) {
+                this.deleteEdge(vertex, adjVertex)
             }
         }
         delete this.adjList[vertex]
     }
-    display(){
-        for(let vertex in this.adjList){
-            console.log(vertex +"===>"+[...this.adjList[vertex]]);
-            
+    display() {
+        for (let vertex in this.adjList) {
+            console.log(vertex + "===>" + [...this.adjList[vertex]]);
+
         }
     }
-    dfs(start , visit=new Set()){
-        visit.add(start)
+    dfs(start, visit = new Set(), result = []) {
+        visit.add(start);
+        result.push(start);
         console.log(start);
-        for(let nei of this.adjList[start]){
-            if(!visit.has(nei)){
-                this.dfs(nei,visit)
+        for (let nei of this.adjList[start]) {
+            if (!visit.has(nei)) {
+                this.dfs(nei, visit, result);
             }
         }
+        return result;
     }
-    bfs(start){
-        let visited=new Set()
-        let queue=[start]
+    bfs(start) {
+        let visited = new Set()
+        let queue = [start]
         visited.add(start)
 
-        while(queue.length>0){
-            let vertex=queue.shift()
+        while (queue.length > 0) {
+            let vertex = queue.shift()
             console.log(vertex);
-            for(let nei of this.adjList[vertex] ){
-                if(!visited.has(nei)){
+            for (let nei of this.adjList[vertex]) {
+                if (!visited.has(nei)) {
                     visited.add(nei)
-                    queue.push(nei)     
+                    queue.push(nei)
                 }
             }
-            
+
         }
     }
     getVertexCount() {
@@ -87,12 +89,12 @@ class Graph{
     }
     isConnected() {
         if (this.isEmpty()) return true;
-        
+
         const vertices = this.getVertices();
         const visited = new Set();
-        
+
         this.dfs(vertices[0], visited);
-        
+
         return visited.size === vertices.length;
     }
     findShortestPath(start, target) {

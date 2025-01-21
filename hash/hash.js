@@ -12,19 +12,19 @@ class HashTable{
         return total%this.size;
     }
 
-    set(key,vlaue){
+    set(key,value){
         const index=this.hash(key);
         let bucket=this.table[index];
         if(bucket){
             let SameValues = bucket.find( item=> item[0]===key);
             if(SameValues){
-                SameValues[1]=vlaue
+                SameValues[1]=value
             }else{
-                bucket.push([key,vlaue])
+                bucket.push([key,value])
             }
 
         }else{
-            this.table[index]=[[key,vlaue]];
+            this.table[index]=[[key,value]];
         }
         
     }

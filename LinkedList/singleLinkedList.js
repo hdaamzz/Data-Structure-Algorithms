@@ -165,6 +165,21 @@ class LinkedList{
             }
         }
     }
+    removeDuplicate(){  //without set emil question
+        let curr=this.head;
+        while(curr){
+            let prev=curr;
+            while(prev.next){
+                if(prev.next.value == curr.value){
+                    prev.next=prev.next.next;
+                    this.size--
+                }else{
+                    prev=prev.next;
+                }
+            }
+            curr=curr.next
+        }
+    }
     deleteMiddle(){
         if(!this.isEmpty()){
             let fast=this.head;
@@ -183,6 +198,57 @@ class LinkedList{
             curr.next=curr.next.next
         }
         this.size--
+    }
+    removeOddValue(){
+        while(this.head && this.head.value%2==1){
+            this.size--;
+            this.head=this.head.next;
+        }
+        let curr=this.head;
+        while(curr&&curr.next){
+            if(curr.next.value%2==1){
+                curr.next=curr.next.next;
+                this.size--
+            }else{
+                curr=curr.next
+            }
+        }
+    }
+
+    removeAdjacentOdd(){
+        if(!this.head)return ;
+        let curr=this.head;
+        while(curr && curr.next && curr.value%2==1 && curr.next.value%2==1){
+             curr.next=curr.next.next;
+             this.size--
+        }
+        while(curr && curr.next){
+            if(curr.value%2==1 && curr.next.value%2==1){
+                curr.next=curr.next.next;
+                this.size--
+            }else{
+                curr=curr.next
+            }
+        }
+    }
+
+    removeAdjacentEven(){
+        if(!this.head)return;
+        
+        let curr = this.head;
+        
+        while( curr && curr.next && curr.value % 2 === 0 && curr.next.value % 2 === 0){
+            curr.next = curr.next.next;
+            this.size--
+        }
+        while(curr && curr.next){
+            if(curr.value % 2 === 0 && curr.next.value % 2 === 0){
+                curr.next = curr.next.next;
+                this.size--
+            }else{
+                curr=curr.next
+            }
+        }
     }
     
     sortList(){

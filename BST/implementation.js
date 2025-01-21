@@ -158,6 +158,55 @@ class BinarySearchTree{
           this.isValidBST1(root.right, root.value, max)
         );
       }
+    
+    findHeight(root){
+        if(!root){
+            return -1
+        }
+        let left=this.findHeight(root.left)
+        let right=this.findHeight(root.right)
+        
+        return Math.max(left,right)+1
+    }
+    findClosest(target){
+        let closest=this.root.value
+        function travers(root){
+            if(!root)return null
+            if(Math.abs(root.value-target) < Math.abs(closest-target)){
+                closest=root.value
+            }
+            if(target < root.value){
+                travers(root.left)
+            }else if(target > root.value){
+                travers(root.right)
+            }
+        }
+        travers(this.root)
+        return closest
+    }
+    findDegree(nodeValue) {
+        const node = this.findNode(this.root, nodeValue);
+        if (node) {
+            const degree = (node.left ? 1 : 0) + (node.right ? 1 : 0);
+            return degree; // Return the degree (0, 1, or 2)
+        }
+        return null; // Node not found
+    }
+
+    findNode(root, value) {
+        if (!root) return null;
+        if (value === root.value) return root;
+        return value < root.value ? this.findNode(root.left, value) : this.findNode(root.right, value);
+    }
+    countLeafs(root){
+        if(!root){
+            return 0
+        }
+        if(!root.left && !root.right){
+            return 1
+        }
+        return this.countLeafs(root.left)+this.countLeafs(root.right)
+    }
 
 }
 
