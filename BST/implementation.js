@@ -207,6 +207,22 @@ class BinarySearchTree{
         }
         return this.countLeafs(root.left)+this.countLeafs(root.right)
     }
+    kthSmallest(k){
+        let stack=[]
+        let node=this.root;
+        while(node||stack.length){
+            while(node){
+                stack.push(node)
+                node=node.left
+            }
+            node=stack.pop()
+            if(--k === 0){
+                return node.value
+            }
+            node=node.right
+        }
+        return null
+    }
 
 }
 
