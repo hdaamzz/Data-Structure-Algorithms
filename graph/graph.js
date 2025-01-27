@@ -133,6 +133,12 @@ class Graph {
 
         return null; // If the loop finishes without finding the target, there's no path
     }
+    calculateDegree(vertex){
+        if(!this.adjList[vertex]){
+            console.log("Vertex does not exist!")
+        }
+        return this.adjList[vertex].size;
+    }
 
 }
 
