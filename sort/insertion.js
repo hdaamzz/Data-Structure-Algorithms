@@ -7,7 +7,7 @@ function insertionSort(arr){
             j--;
         }
         arr[j+1]=key
-    }
+    }   
     return arr
 }
 const array=[7,4,7,3,67,3,67,4,46,4,6,43]

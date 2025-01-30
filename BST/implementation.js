@@ -223,6 +223,14 @@ class BinarySearchTree{
         }
         return null
     }
+    secondLargest(root,res=[]){
+        if(root){
+            this.secondLargest(root.left,res);
+            res.push(root.value)
+            this.secondLargest(root.right,res)
+        }
+        return res[res.length-2]
+    }
 
 }
 

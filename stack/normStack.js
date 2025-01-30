@@ -27,37 +27,29 @@ class Stack{
         }
         this.items=reverseItems
     }
-    findSecondLargest() {
+    findSecondLargest(){
         if (this.size() < 2) {
             throw new Error("Stack must have at least two elements.");
         }
-
-        let firstLargest = -Infinity;
-        let secondLargest = -Infinity;
-        const tempStack = new Stack();
-
-        while (!this.isEmpty()) {
-            let current = this.pop();
-
-            if (current > firstLargest) {
-                secondLargest = firstLargest;
-                firstLargest = current;
-            } else if (current > secondLargest && current !== firstLargest) {
-                secondLargest = current;
+        let largest=-Infinity;
+        let second=-Infinity;
+        
+        let temp=[];
+        while(!this.isEmpty()){
+            let curr=this.pop();
+            if(curr > largest){
+                second=largest;
+                largest=curr
             }
-
-            tempStack.push(current);
+            if(curr > second && curr !== largest){
+                second=curr
+            }
+            temp.push(curr)
         }
-
-        while (!tempStack.isEmpty()) {
-            this.push(tempStack.pop());
+        while(temp.length > 0){
+            this.push(temp.pop())
         }
-
-        if (secondLargest === -Infinity) {
-            throw new Error("No second largest element found.");
-        }
-
-        return secondLargest;
+        return second
     }
 
 }

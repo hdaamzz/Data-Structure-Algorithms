@@ -21,4 +21,4 @@ function reverseWordsUsingStack(str){
     return res
 }
 
-console.log(reverseWordsUsingStack("hello world"));
+console.log(reverseWordsUsingStack("hello world"));//olleh dlrow
