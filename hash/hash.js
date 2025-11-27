@@ -11,7 +11,7 @@ class HashTable{
         }
         return total%this.size;
     }
-
+    
     set(key,value){
         const index=this.hash(key);
         let bucket=this.table[index];
@@ -24,7 +24,7 @@ class HashTable{
             }
 
         }else{
-            this.table[index]=[[key,value]];
+            this.table[index] = [[key, value]];
         }
         
     }

@@ -1,26 +1,26 @@
 class Node {
-    constructor(value) {
-        this.value = value
-        this.next = null
-    }
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
 }
 
 class Queue {
-    constructor() {
-        this.first = null
-        this.last = null
-        this.size = 0
-    }
+  constructor() {
+    this.first = null
+    this.last = null
+    this.size = 0
+  }
 
 
-    isEmpty() {
-        return this.size==0
-    }
-    getSize() { 
-        return this.size;
-      }
+  isEmpty() {
+    return this.size == 0
+  }
+  getSize() {
+    return this.size;
+  }
 
-    enqueue(item) {
+  enqueue(item) {
     const node = new Node(item);
     if (this.isEmpty()) {
       this.first = node;
@@ -31,7 +31,7 @@ class Queue {
     }
     this.size++;
   }
-  
+
 
   dequeue() {
     if (this.isEmpty()) {
@@ -51,20 +51,20 @@ class Queue {
     }
     return this.first.value;
   }
-    print() {
+  print() {
 
-        if (this.isEmpty()) {
-            return 'empty queue'
-        }
-
-        let current = this.first
-        let res = ''
-        while (current) {
-            res +=`${current.value} `
-            current = current.next
-        }
-        console.log( res.trim())
+    if (this.isEmpty()) {
+      return 'empty queue'
     }
+
+    let current = this.first
+    let res = ''
+    while (current) {
+      res += `${current.value} `
+      current = current.next
+    }
+    console.log(res.trim())
+  }
 }
 const queue = new Queue();
 

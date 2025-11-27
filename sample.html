@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+    <h3 id="keyHedding">Hello World</h3>
+    <input id="check" type="checkbox" >
+    <button id="btn">CLICK</button>
+    </div>
+    
+    <script>
+
+        let flag=true;
+        let btn=document.getElementById('btn')
+        let box=document.getElementById('check');
+        let head=document.getElementById('keyHedding')
+        box.value=flag
+        
+        btn.addEventListener('mouseover',()=>{
+            flag = !flag
+            console.log(window.history);
+            
+            // head.innerHTML = flag ? "Hello World" : "Goodbye World";
+            box.checked=flag
+        })
+    </script>
+
+</body>
+</html>

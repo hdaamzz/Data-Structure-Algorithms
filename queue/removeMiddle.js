@@ -15,7 +15,6 @@ class Queue{
         return this.items[0]
 
     }
-
     display(){
         console.log(this.items.toString());
     }

@@ -17,3 +17,4 @@ function validParanthasis(str){
     }
     return stack.length==0
 }
+

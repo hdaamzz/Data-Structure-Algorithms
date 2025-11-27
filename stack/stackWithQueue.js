@@ -28,6 +28,10 @@ class StackWithQueue{
             this.q1=new Queue()
             this.q2=new Queue()
         }
+    isEmpty() {
+        return this.q1.isEmpty();
+    }
+
     push(element){
             this.q1.enqueue(element);
         }
@@ -63,9 +67,8 @@ class StackWithQueue{
 
         return topElem
     }
-
-    print(){
-        console.log(this.q1.print())
+    print() {
+        console.log("Stack (top -> bottom):", this.q1.items.slice().reverse().toString());
     }
 }
 

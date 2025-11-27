@@ -13,5 +13,5 @@ function reverseStringInPlace(str){
 
 let input = "hello world";
 let reversed = reverseStringInPlace(input);
-console.log(reversed);//dlrow olleh
+console.log(reversed); //dlrow olleh
 

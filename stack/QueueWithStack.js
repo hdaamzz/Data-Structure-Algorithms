@@ -47,6 +47,9 @@ class QueueWithStack{
         return this.s2.pop()
     }
 
+    isEmpty() {
+        return this.s1.isEmpty() && this.s2.isEmpty();
+    }
 
     peek(){
         if(this.s2.isEmpty()){
@@ -55,6 +58,10 @@ class QueueWithStack{
             }
         }
         return this.s2.peek()
+    }
+    print() {
+        console.log("s1:", this.s1.items);
+        console.log("s2:", this.s2.items);
     }
 
     
