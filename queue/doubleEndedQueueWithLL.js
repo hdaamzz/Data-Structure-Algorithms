@@ -42,7 +42,7 @@ class Deque {
         if(this.head){
             this.head.prev=null;
         }else{
-            this.tail=null
+            this.tail=null;
         }
         this.size--;
         return value
@@ -84,9 +84,9 @@ queue.pushFront(18);
 queue.pushFront(19);
 queue.pushBack(90);
 queue.pushBack(9);
-queue.popFront()
-queue.popBack()
+queue.popFront();
+queue.popBack();
 
-queue.print()
+queue.print();
 
 
