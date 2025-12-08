@@ -63,6 +63,14 @@ class QueueWithStack{
         console.log("s1:", this.s1.items);
         console.log("s2:", this.s2.items);
     }
+    printRealOrder() {
+        let s2copy = [...this.s2.items].reverse();  
+        let s1copy = [...this.s1.items]; 
+    
+        let queueOrder = s2copy.concat(s1copy);
+    
+        console.log("Queue order:", queueOrder);
+    }
 
     
 }
