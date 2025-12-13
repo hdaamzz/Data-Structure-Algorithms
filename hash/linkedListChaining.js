@@ -1,110 +1,82 @@
-class Node {
-  constructor(key, value) {
-    this.key = key;
-    this.value = value;
-    this.next = null;
+
+class Node{
+  constructor(key,value){
+    this.key=key
+    this.value=value;
+    this.next=null;
   }
 }
 
-class HashTable {
-  constructor(size) {
-    this.table = new Array(size).fill(null);
-    this.size = size;
+class HashTable{
+  constructor(size){
+    this.table=new Array(size);
+    this.size=size;
   }
-
-  hash(key) {
-    let total = 0;
-    for (let ch of key) total += ch.charCodeAt(0);
-    return total % this.size;
-  }
-
-  set(key, value) {
-    const index = this.hash(key);
-    let head = this.table[index];
-
-    if (!head) {
-      this.table[index] = new Node(key, value);
-      return;
+  hash(key){
+    let total=0;
+    for (let i = 0; i < key.length; i++) {
+      total+=key.charCodeAt(i)
     }
-
-    let curr = head;
-    while (curr) {
-      if (curr.key === key) {
-        curr.value = value;
-        return;
+    return this.size%total;
+     
+  }
+  set(key,value){
+    let index=this.hash(value);
+    if(!this.table[index]){
+      this.table[index]=new Node(key,value);
+    }
+    let curr=this.table[index];
+    while(curr){
+      if(curr.key==key){
+        curr.value=value
+        return 
       }
-      if (!curr.next) break;
-      curr = curr.next;
+      if(!curr.next)break;
+      curr=curr.next;
     }
-
-    curr.next = new Node(key, value); 
+    curr.next=new Node(key,value  )
   }
-
-  get(key) {
-    const index = this.hash(key);
-    let curr = this.table[index];
-
-    while (curr) {
-      if (curr.key === key) return curr.value;
-      curr = curr.next;
+  
+  get(key){
+    let index=this.hash(key);
+    let curr=this.table[index];
+    while(curr){
+      if(curr.key==key){
+        return curr.value;
+      }
+      curr=curr.next
     }
-
     return undefined;
   }
-
-  remove(key) {
-    const index = this.hash(key);
-    let curr = this.table[index];
-    let prev = null;
-
-    while (curr) {
-      if (curr.key === key) {
-        if (prev === null) {
-          this.table[index] = curr.next; 
-        } else {
-          prev.next = curr.next; 
+  remove(key){
+    let index=this.hash(key);
+    let curr=this.table[index];
+    let prev=null;
+  
+    while(curr){
+      if(curr.key==key){
+        if(prev){
+          prev.next=curr.next;
+        }else{
+          this.table[index]=curr.next
         }
-        return;
+        return true
       }
-      prev = curr;
-      curr = curr.next;
+      prev=curr;
+      curr=curr.next
     }
-  }
-
-  display() {
-    for (let i = 0; i < this.table.length; i++) {
-      let curr = this.table[i];
-      let chain = [];
-
-      while (curr) {
-        chain.push(`${curr.key}:${curr.value}`);
-        curr = curr.next;
-      }
-
-      if (chain.length > 0) console.log(i, chain);
-    }
-  }
-
-  loadFactor() {
-    let entries = 0;
-
-    for (let bucket of this.table) {
-      let curr = bucket;
-      while (curr) {
-        entries++;
-        curr = curr.next;
-      }
-    }
-
-    return entries / this.size;
+    return false
   }
 }
 
-const table = new HashTable(5);
+const ht = new HashTable()
 
-table.set("name", "shafi");
-table.set("nema", 54);
-table.set("2", 34);
+ht.set("name", "Dilshad")
+ht.set("age", 23)
+ht.set("eman", "collision demo") // likely collision
 
-table.display();
-console.log("Load factor:", table.loadFactor());
+console.log(ht.get("name")) // Dilshad
+console.log(ht.get("age"))  // 23
+
+ht.remove("age")
+console.log(ht.get("age")) // undefined
