@@ -139,6 +139,29 @@ class Graph {
         }
         return this.adjList[vertex].size;
     }
+    isCyclic() {
+        const visited = new Set();
+    
+        const dfs = (vertex, parent) => {
+            visited.add(vertex);
+    
+            for (let neighbor of this.adjList[vertex]) {
+                if (!visited.has(neighbor)) {
+                    if (dfs(neighbor, vertex)) return true;
+                } else if (neighbor !== parent) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        for (let vertex of this.getVertices()) {
+            if (!visited.has(vertex)) {
+                if (dfs(vertex, null)) return true;
+            }
+        }
+    
+        return false;
+    }
 
 }
 
