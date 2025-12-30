@@ -146,18 +146,6 @@ class BinarySearchTree{
             this.isValidBST(root.left,root.value,min)&&this.isValidBST(root.right,max,root.value)
         )
     }
-    isValidBST1(root, min = null, max = null) {
-        if (!root) {
-          return true;
-        }
-        if ((min !== null && root.value <= min) || (max !== null && root.value >= max)) {
-          return false;
-        }
-        return (
-          this.isValidBST1(root.left, min, root.value) &&
-          this.isValidBST1(root.right, root.value, max)
-        );
-      }
     
     findHeight(root){
         if(!root){
@@ -188,9 +176,9 @@ class BinarySearchTree{
         const node = this.findNode(this.root, nodeValue);
         if (node) {
             const degree = (node.left ? 1 : 0) + (node.right ? 1 : 0);
-            return degree; // Return the degree (0, 1, or 2)
+            return degree; 
         }
-        return null; // Node not found
+        return null; 
     }
 
     findNode(root, value) {
@@ -231,7 +219,61 @@ class BinarySearchTree{
         }
         return res[res.length-2]
     }
+    palindromes(){
+        if(!this.root){
+          return []
+        }
+        this.isPalindrom(this.root)
+    }
+    isPalindrom(node){
+        if(node){
+          let val=node.value;
+          let rev=0;
+          while(val){
+            let rem=val%10;
+            val=Math.floor(val/10)
+            rev=rev*10+rem
+          }
+          if(rev===node.value){
+            console.log(`${node.value} is a palindrom`)
+          }else{
+            console.log(`${node.value} is not a palindrom`)
+          }
+          this.isPalindrom(node.left);
+          this.isPalindrom(node.right);
+        }
+      }
+    
+}
 
+function checkBalanced(root){
+  function heightOfFail(node){
+    if(!node){
+      return 0
+    }
+    let left=heightOfFail(node.left);
+    if(left===-1)return -1;
+    let right=heightOfFail(node.right);
+    if(right==-1)return -1;
+    
+    if(Math.abs(left-right)>1)return -1
+    return Math.max(left,right)+1
+  }
+  return heightOfFail(root)!== -1
+}
+function convBST(arr){
+  const binarySearch=(start,end)=>{
+    if(start>end){
+      return 
+    }
+    let mid=Math.floor((start+end)/2)
+    
+    let root=new Node(arr[mid]);
+    root.left=binarySearch(start,mid-1);
+    root.right=binarySearch(mid+1,end);
+    return root
+  }
+  return binarySearch(0,arr.length-1)
 }
 
 const bst=new BinarySearchTree();
