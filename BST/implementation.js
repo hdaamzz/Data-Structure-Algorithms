@@ -219,30 +219,24 @@ class BinarySearchTree{
         }
         return res[res.length-2]
     }
-    palindromes(){
-        if(!this.root){
-          return []
-        }
-        this.isPalindrom(this.root)
-    }
-    isPalindrom(node){
-        if(node){
-          let val=node.value;
+    isPalindrome(root=this.root){
+        if(root){
+          let val=root.value;
           let rev=0;
           while(val){
             let rem=val%10;
-            val=Math.floor(val/10)
+            val=Math.floor(val/10);
             rev=rev*10+rem
           }
-          if(rev===node.value){
-            console.log(`${node.value} is a palindrom`)
+          if(rev==root.value){
+            console.log(`${root.value} is a palindrom`);
           }else{
-            console.log(`${node.value} is not a palindrom`)
+            console.log(`${root.value} is not a palindrom`)
           }
-          this.isPalindrom(node.left);
-          this.isPalindrom(node.right);
+          this.isPalindrome(root.left);
+          this.isPalindrome(root.right);
         }
-      }
+    }
     
 }
 
